@@ -6,11 +6,13 @@ import json
 import sys
 
 
-user = requests.get(f'https://jsonplaceholder.typicode.com/users/{sys.argv[1]}')
+user = requests.get('https://jsonplaceholder.typicode.com/users/{}'.
+                    format(sys.argv[1]))
 user = user.json()
-todos = requests.get(f'https://jsonplaceholder.typicode.com/todos?userId={sys.argv[1]}')
+todos = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'.
+                     format(sys.argv[1]))
 todos = todos.json()
-#print(todos.json())
+# print(todos.json())
 name = user['name']
 total_tasks = len(todos)
 tasks_done = 0
@@ -21,7 +23,8 @@ for f in todos:
         if f['completed']:
             tasks_done += 1
             lists_of_titles.append(f['title'])
-    #print(f"****{f}****")    
-print(f"Employee {name} is done with tasks({tasks_done}/{total_tasks})")
+    # print(f"****{f}****")
+print("Employee {} is done with tasks({}/{})".
+      format(name, tasks_done, total_tasks))
 for title in lists_of_titles:
-    print(f"\t{title}")
+    print("\t{}".format(title))
