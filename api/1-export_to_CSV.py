@@ -13,12 +13,14 @@ if __name__ == '__main__':
     user = requests.\
         get('https://jsonplaceholder.typicode.com/users/{}'.
             format(sys.argv[1]))
-    user = user.json().get('username')
+    user = user.json()
     todos = requests.\
-        get('https://jsonplaceholder.typicode.com/todos?userId={}'.
+        get('https://jsonplaceholder.typicode.com/users/{}/todos'.
             format(sys.argv[1]))
     todos = todos.json()
     with open(sys.argv[1] + '.csv', 'w') as file:
         for i in todos:
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-            writer.writerow([i['userId'], user, i['completed'], i['title']])
+            writer.writerow([i['userId'], user['username'],
+                            i['completed'], i['title']])
+    file.close()
