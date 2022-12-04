@@ -23,7 +23,6 @@ if __name__ == '__main__':
     lists_of_titles = []
     for f in todos:
         if user['id'] == f['userId']:
-            total_tasks += 1
             if f['completed']:
                 tasks_done += 1
                 lists_of_titles.append(f['title'])
