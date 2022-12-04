@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """task0 module"""
 
-import requests
 import json
+import requests
 import sys
 
 if __name__ == '__main__':
@@ -28,7 +28,7 @@ if __name__ == '__main__':
                 tasks_done += 1
                 lists_of_titles.append(f['title'])
         # print(f"****{f}****")
-    print("Employee {} is done with tasks({}/{})".
+    print("Employee {} is done with tasks({}/{}):".
           format(name, tasks_done, total_tasks))
     for title in lists_of_titles:
         print("\t{}".format(title))
