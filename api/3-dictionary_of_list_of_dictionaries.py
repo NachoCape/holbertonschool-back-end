@@ -15,11 +15,10 @@ if __name__ == '__main__':
     dicty = {}
     _list = []
     for i in user:
-        for j in todos:
-            if j.get('userId') == i.get('id'):
-                _list += [{"username": i.get('username'),
-                          "completed": j.get('completed'),
-                           "task": j.get('title')}]
+        _list = [{"task": j.get('title'),
+                 "completed": j.get('completed'),
+                  "username": i.get('username')} for j in todos
+                 if j.get('userId') == i.get('id')]
         dicty["{}".format(i.get('id'))] = _list
     with open("todo_all_employees.json", 'w', encoding="UTF-8") as file:
         w = json.dump(dicty, file)
